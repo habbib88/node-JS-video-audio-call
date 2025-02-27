@@ -165,17 +165,17 @@ io.on('connection', socket => {
       }
     });
     delete socketToRoom[socket.id];
-    io.emit("onlineUsers", onlineUsers); // Broadcast updated onlineUsers list
+    io.emit("onlineUsers", onlineUsers); // Broadcast updated onlineUsers list 
   })
 
 });
 function isUserAvailable(data, targetUserId) {
   // Loop through each room in the object
   for (const room in data) {
-    // Check if the room has an array of users
+    // Check if the room has an array of users exist or not
     const users = data[room];
     if (Array.isArray(users)) {
-      // Look for the userId in the current room
+      // Look for the userId in the current room for joining each other and call 
       const user = users.find(user => user.socketId === targetUserId);
       if (user) {
         return { available: true, room, user };
